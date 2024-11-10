@@ -20,7 +20,7 @@ print(f"append projection root {project_root} to PYTHONPATH.")
 sys.path.append(project_root)
 from datasets import build_dataset
 from visualization.utils import visualize_a_batch
-from models.glnet 
+import models.glnet 
 import models.glnet_tklb
 
 from argparse import Namespace

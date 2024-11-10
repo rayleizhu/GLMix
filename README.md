@@ -7,8 +7,10 @@ Official PyTorch implementation of **GLNet**, from the following paper:
 
 --- 
 <p align="left">
-<img src="assets/glmix.png" width=90% height=90% 
-class="center">
+<img src="assets/glmix.png" width=90% height=90% class="center">
+</p>
+<p align="left">
+<img src="assets/visualization.png" width=90% height=90% class="center">
 </p>
 
 ## Features of This Repository
