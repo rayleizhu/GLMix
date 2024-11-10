@@ -1,0 +1,134 @@
+############ faithfully converted from argparse ###############
+batch_size: 64
+epochs: 300 # standard 300ep schedule
+update_freq: 1
+model: convnextv2_base
+input_size: 224
+drop_path: 0.1 # uniformer default 0.1
+layer_decay_type: single
+
+# ConvNextV1&V2, MaxViT, CSwin enable ema during training
+model_ema: true
+# CSwin-T/S/B: 0.99984(lr=2e-3, bs=256x8)/0.99984(lr=2e-3, bs=256x8)/0.99992(lr=1e-3, bs=128x8)
+# ConvNextV1/V2: 0.9999
+# MaxViT: 0.9999
+# SGFormer: 0.99992
+model_ema_decay: 0.9999
+model_ema_force_cpu: false
+model_ema_eval: true
+
+clip_grad: null # uniformer: null, MaxViT: 1.0
+weight_decay: 0.05
+lr: null
+blr: 0.00025 # uniformer uses 5e-4, but their scaling divisor is 512, cx2 256
+layer_decay: 1.0
+min_lr: 1.0e-05 # uniformer uses 1e-5, convnextv2 use 1e-6
+warmup_epochs: 5 # uniformer/smt 5, convnext 20
+warmup_steps: -1
+opt: adamw
+opt_eps: 1.0e-08
+opt_betas: null
+momentum: 0.9
+weight_decay_end: null
+
+
+repeated_aug: true # uniformer takes true, while convnextv2 takes false
+
+# Swin, convnext, uniformer, etc. use color_jitter=0.4 as default
+# but MAE & ConvNextV2 uses null default
+# is it overwrite by aa?
+color_jitter: 0.4 
+
+aa: rand-m9-mstd0.5-inc1
+smoothing: 0.1
+train_interpolation: bicubic
+reprob: 0.25
+remode: pixel
+recount: 1
+resplit: false
+mixup: 0.8 # uniformer, convnextv1
+cutmix: 1.0 # uniformer, convnextv1
+cutmix_minmax: null
+mixup_prob: 1.0
+mixup_switch_prob: 0.5
+mixup_mode: batch
+finetune: ''
+head_init_scale: 0.001
+model_key: model|module
+model_prefix: ''
+data_path: ./data/in1k
+nb_classes: 1000
+output_dir: ./outputs/finetune
+log_dir: ${output_dir}/tf_record_log # changed
+device: cuda
+seed: 0
+resume: ''
+eval_data_path: null
+imagenet_default_mean_and_std: true
+data_set: IMNET
+auto_resume: true
+save_ckpt: true
+save_ckpt_freq: 1
+save_ckpt_num: 1
+start_epoch: 0
+eval: false
+dist_eval: true
+disable_eval: false
+num_workers: 10
+pin_mem: true
+crop_pct: null
+world_size: 1
+local_rank: -1
+dist_on_itp: false
+dist_url: env://
+use_amp: true
+ddp_fup: false # find_unused_parameters
+############################################
+
+
+project: image_models # corresponding to slurm ddp communication path (if using file), and pavi project name
+load_release: false # load relased checkpoints (e.g. for evaluation)
+use_lmdb: false # read dataset with lmdb?
+persistent_workers: false
+use_prefetch: false
+benchmark: true
+
+# defaults:
+  # https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order/
+  # - _self_ # this makes options in groups (subdirs) has higher priority
+  # - pavi: default
+  # - _self_ # this makes options in groups (subdirs) has lower priority
+
+
+hydra:
+  run:
+    dir: "outputs/${hydra.job.override_dirname}/cls/${now:%Y%m%d-%H.%M.%S}"
+  # https://hydra.cc/docs/configure_hydra/workdir/
+  sweep:
+    dir: multirun
+    subdir: ${hydra.job.override_dirname}
+  job:
+    config:
+      override_dirname:
+        kv_sep: '.'
+        item_sep: '-'
+        exclude_keys:
+          - slurm
+          - slurm.partition
+          - slurm.quotatype
+          - slurm.job_dir
+          - pavi
+          - pavi.project
+          - pavi.name
+          - pavi.description
+          - resume
+          - output_dir
+          - log_dir
+          - data_path
+          - dist_url
+          - dist_eval
+          - eval
+          - use_lmdb
+          - num_workers
+          - persistent_workers
+          - use_prefetch

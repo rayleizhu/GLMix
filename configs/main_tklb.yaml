@@ -1,0 +1,128 @@
+
+########## exported from argparse #########
+fp32_resume: false
+batch_size: 128
+
+# following https://github.com/YehLi/ImageNetModel/blob/main/classification/train.sh
+epochs: 310 # 300 -> 310
+
+model: pvt_small
+input_size: 224
+drop: 0.0
+drop_path: 0.1
+model_ema: false
+model_ema_decay: 0.99996
+model_ema_eval: true
+model_ema_force_cpu: false
+opt: adamw
+opt_eps: 1.0e-08
+opt_betas: null
+clip_grad: null
+momentum: 0.9
+weight_decay: 0.05
+sched: cosine
+lr: 0.0005
+lr_noise: null
+lr_noise_pct: 0.67
+lr_noise_std: 1.0
+warmup_lr: 1.0e-06
+min_lr: 1.0e-05
+decay_epochs: 30
+warmup_epochs: 5
+cooldown_epochs: 10
+patience_epochs: 10
+decay_rate: 0.1
+color_jitter: 0.4
+aa: rand-m9-mstd0.5-inc1
+smoothing: 0.1
+train_interpolation: bicubic
+repeated_aug: true
+reprob: 0.25
+remode: pixel
+recount: 1
+resplit: false
+mixup: 0.8
+cutmix: 1.0
+cutmix_minmax: null
+mixup_prob: 1.0
+mixup_switch_prob: 0.5
+mixup_mode: batch
+finetune: ''
+data_path: './data/in1k'
+data_set: IMNET
+use_mcloader: false
+inat_category: name
+output_dir: ''
+device: cuda
+seed: 0
+resume: ''
+start_epoch: 0
+eval: false
+dist_eval: true # false -> true
+num_workers: 8
+pin_mem: true
+world_size: 1
+dist_url: env://
+token_label: true # false -> true
+token_label_data: '/mnt/cache/zhulei1/label_top5_train_nfnet'
+token_label_size: 7 # 1->7
+dense_weight: 0.5
+cls_weight: 1.0
+no_aug: false
+scale: [0.08, 1.0]
+ratio: [0.75, 1.3333333333333333]
+hflip: 0.5
+vflip: 0.0
+use_multi_epochs_loader: false
+#######################################
+
+dist_on_itp: false
+
+project: image_models # corresponding to slurm ddp communication path (if using file), and pavi project name
+
+# ckpts & logging
+auto_resume: true
+save_ckpt: true
+save_ckpt_freq: 1
+save_ckpt_num: 1
+log_dir: ${output_dir}/tf_record_log
+
+# I/O optimization: memcache dataset
+# seems to be buggy
+use_memcache: false
+mc_config_path: '/mnt/lustre/share/memcached_client/' # there should be client.conf and server_list.conf
+
+all_proc_print: false
+
+load_release: false
+benchmark: true
+
+hydra:
+  run:
+    dir: "outputs/${hydra.job.override_dirname}/cls/${now:%Y%m%d-%H.%M.%S}"
+  # https://hydra.cc/docs/configure_hydra/workdir/
+  sweep:
+    dir: multirun
+    subdir: ${hydra.job.override_dirname}
+  job:
+    config:
+      override_dirname:
+        kv_sep: '.'
+        item_sep: '-'
+        exclude_keys:
+          - slurm
+          - slurm.partition
+          - slurm.quotatype
+          - slurm.job_dir
+          - pavi
+          - pavi.project
+          - pavi.name
+          - pavi.description
+          - resume
+          - output_dir
+          - log_dir
+          - data_path
+          - dist_url
+          - dist_eval
+          - eval
+          - num_workers
