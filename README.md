@@ -7,7 +7,7 @@ Official PyTorch implementation of **GLNet**, from the following paper:
 
 --- 
 <p align="left">
-<img src="assets/glmix.png" width=80% height=80% 
+<img src="assets/glmix.png" width=90% height=90% 
 class="center">
 </p>
 
@@ -15,19 +15,19 @@ class="center">
 
 This repository is designed to run experiments in an **elegant** and **highly automated** manner. The key features to achieve such a goal are:
 
-* Integration of hydra configuration system for efficient experiment management. See [main_cx2.py]()
+* Integration of hydra configuration system for efficient experiment management. See [here](https://github.com/rayleizhu/GLMix/blob/f01679c067fcfed78b951e7464c6f583118733d7/main_cx2.py#L379).
 * Advanced support for slurm clusters. See [slurm_wrapper.py](slurm_wrapper.py).
-* Auto resume functionality to finish experiments in preemptive clusters. See [TBA]()
-* Integration of timm benchmark tools to get FLOPs and Throughputs automatically, see [TBA]()
-* Integration of Tensorboard for training visualization. See [TBA]()
-* Integration of tools for IO optimization. See [TBA]().
+* Auto resume functionality to finish experiments in preemptive clusters. See [here](https://github.com/rayleizhu/GLMix/blob/f01679c067fcfed78b951e7464c6f583118733d7/main_cx2.py#L258).
+* Integration of timm benchmark tools to get FLOPs and Throughputs automatically. See [here](https://github.com/rayleizhu/GLMix/blob/f01679c067fcfed78b951e7464c6f583118733d7/main_cx2.py#L136).
+* Integration of Tensorboard for training visualization. See [here](https://github.com/rayleizhu/GLMix/blob/f01679c067fcfed78b951e7464c6f583118733d7/main_cx2.py#L290)
+* Integration of tools for IO optimization. See [here](https://github.com/rayleizhu/GLMix/blob/f01679c067fcfed78b951e7464c6f583118733d7/main_cx2.py#L101).
 
 Besides, you can find configurable visualization scripts tailored for the GLNet family in [visualization/](visualization/).
 
 
 ## Quick Start
 
-Setup environment and prepare data according to the [installation guide](INSTALL.md), then execute the command below to evaluate our [released checkpoints]().
+Setup environment and prepare data according to the [installation guide](INSTALL.md), then execute the command below to evaluate our [released checkpoints](https://github.com/rayleizhu/GLMix/blob/f01679c067fcfed78b951e7464c6f583118733d7/models/glnet.py#L12).
 
 ```bash
 # It should finally report something like:
@@ -73,7 +73,7 @@ python main_cx2.py \
 - [ ] a guide for running on multiple GPUs without Slurm
   - this should be simple with `torchrun`. Contributions are welcome.
 - [ ] add legacy models (e.g., BiFormer)
-- [ ] support Ascend NPU
+- [ ] support [Ascend NPU](https://github.com/Ascend/pytorch)
 <!-- ✅ ⬜️  -->
 
 ## Acknowledgement
