@@ -45,13 +45,13 @@ python main_cx2.py \
 
 ## Detailed Guide
 
-* You don't need to download checkpoints mannually, the script will download them automatically to `~/.cache/torch/hub/checkpoints/[MODEL_NAME].pth`.
+* You don't need to download checkpoints manually; the script will download them automatically to `~/.cache/torch/hub/checkpoints/[MODEL_NAME].pth`.
 * With regular training recipe [main_cx2.py](main_cx2.py), availble models are  `glnet_4g`, `glnet_9g`, `glnet_16g`, `glnet_stl`, `glnet_stl_paramslot`.
 * For token labeling models, use [main_tklb.py](main_tklb.py), available models are `glnet_4g_tklb`, `glnet_9g_tklb`. These models have better performances for IN1k classification (see Tab. 3 in our paper).
-* For training, please remove the `eval=True` flag. If you want to reproduce the reported results, make sure hyperparameters are correctly set (Tab. 8 & Tab. 9) in the paper (Appendix).
-  * Generally, you can leave most hyperparameters default, with only `drop_path=xx lr=2e-3 clip_grad=5.0` being set mannually.
+* For training, please remove the `eval=True` flag. To reproduce the reported results, ensure hyperparameters are correctly set (Tab. 8 & Tab. 9) as those in the paper (Appendix).
+  * Generally, you can leave most hyperparameters default, with only `drop_path=xx lr=2e-3 clip_grad=5.0` being set manually.
   * The `drop_path` for `glnet_4g`/`glnet_9g`/`glnet_16g` is 0.15/0.3/0.4. For stl (Swin-Tiny-Layout) models (`glnet_stl`/`glnet_stl_paramslot`) and token labeling models (`glnet_4g_tklb`/`glnet_9g_tklb`)  we use 0.1.
-  * We use a global batch size of 2048. The global batch size is `batch_size * gpus_per_node * num_nodes * update_freq`. If you do have no enough memory, try to set `update_freq` larger than 1 for gradient accumulation (we did not try it though).
+  * We use a global batch size of 2048. The global batch size is `batch_size * gpus_per_node * num_nodes * update_freq`. If you do not have enough memory, try to set `update_freq` larger than 1 for gradient accumulation (we did not try it, though).
 
 ## Model Card
 
@@ -82,7 +82,7 @@ python main_cx2.py \
 This repository is built using the [timm](https://github.com/rwightman/pytorch-image-models) library, and [BiFormer](https://github.com/rayleizhu/BiFormer/tree/public_release), [ConvNext](https://github.com/facebookresearch/ConvNeXt-V2) repositories.
 
 ## License
-This project is released under the MIT license. Please see the [LICENSE](LICENSE) file for more information.
+This project is released under the MIT license. Please take a look at the [LICENSE](LICENSE) file for more information.
 
 ## Citation
 If you find this repository helpful, please consider citing:
