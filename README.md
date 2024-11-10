@@ -1,4 +1,4 @@
-# [GLNet (NeurIPS 2024)](https://1drv.ms/b/s!AkBbczdRlZvCynbqHKDS3LCjAbrC?e=w2kl1c)
+# [GLNet (NeurIPS 2024)](https://neurips.cc/virtual/2024/poster/93308)
 
 Official PyTorch implementation of **GLNet**, from the following paper:
 
