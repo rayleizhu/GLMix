@@ -2,7 +2,7 @@
 
 Official PyTorch implementation of **GLNet**, from the following paper:
 
-[Revisiting the Integration of Convolution and Attention for Vision Backbone](https://1drv.ms/b/s!AkBbczdRlZvCynbqHKDS3LCjAbrC?e=w2kl1c). NeurIPS 2024.\
+[Revisiting the Integration of Convolution and Attention for Vision Backbone](https://arxiv.org/abs/2411.14429). NeurIPS 2024.\
 [Lei Zhu](https://rayleizhu.github.io), [Xinjiang Wang](https://scholar.google.com/citations?user=q4lnWaoAAAAJ&hl=en), [Wayne Zhang](http://www.statfe.com/), and [Rynson Lau](https://openreview.net/profile?id=~Rynson_W._H._Lau1)
 
 --- 
@@ -70,7 +70,7 @@ python main_cx2.py \
 - [x] IN1k standard training code, logs, and checkpoints
 - [x] IN1k token-labeling code, logs, and checkpoint
 - [x] visualization scripts
-- [ ] arXiv link
+- [x] arXiv link
 - [ ] semantic segmentation and object detection code
 - [ ] a guide for running on multiple GPUs without Slurm
   - this should be simple with `torchrun`. Contributions are welcome.
