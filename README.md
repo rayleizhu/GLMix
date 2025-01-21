@@ -46,7 +46,7 @@ python main_cx2.py \
 ## Detailed Guide
 
 * ~~You don't need to download checkpoints manually; the script will download them automatically to `~/.cache/torch/hub/checkpoints/[MODEL_NAME].pth`.~~
-* You DO need to download checkpoints manually and put it to `~/.cache/torch/hub/checkpoints/[MODEL_NAME].pth` due to [a change of onedrive API](https://github.com/rclone/rclone/issues/7898#issuecomment-2181921514).
+* You DO need to download checkpoints manually and put it to `~/.cache/torch/hub/checkpoints/[MODEL_NAME].pth` due to [a change of onedrive API](https://github.com/rclone/rclone/issues/7898#issuecomment-2181921514). See the Model Card section below for links.
 * With regular training recipe [main_cx2.py](main_cx2.py), availble models are  `glnet_4g`, `glnet_9g`, `glnet_16g`, `glnet_stl`, `glnet_stl_paramslot`.
 * For token labeling models, use [main_tklb.py](main_tklb.py), available models are `glnet_4g_tklb`, `glnet_9g_tklb`. These models have better performances for IN1k classification (see Tab. 3 in our paper).
 * For training, please remove the `eval=True` flag. To reproduce the reported results, ensure hyperparameters are correctly set (Tab. 8 & Tab. 9) as those in the paper (Appendix).
