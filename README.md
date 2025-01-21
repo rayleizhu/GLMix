@@ -45,7 +45,8 @@ python main_cx2.py \
 
 ## Detailed Guide
 
-* You don't need to download checkpoints manually; the script will download them automatically to `~/.cache/torch/hub/checkpoints/[MODEL_NAME].pth`.
+* ~~You don't need to download checkpoints manually; the script will download them automatically to `~/.cache/torch/hub/checkpoints/[MODEL_NAME].pth`.~~
+* You DO need to download checkpoints manually and put it to `~/.cache/torch/hub/checkpoints/[MODEL_NAME].pth` due to [a change of onedrive API](https://github.com/rclone/rclone/issues/7898#issuecomment-2181921514).
 * With regular training recipe [main_cx2.py](main_cx2.py), availble models are  `glnet_4g`, `glnet_9g`, `glnet_16g`, `glnet_stl`, `glnet_stl_paramslot`.
 * For token labeling models, use [main_tklb.py](main_tklb.py), available models are `glnet_4g_tklb`, `glnet_9g_tklb`. These models have better performances for IN1k classification (see Tab. 3 in our paper).
 * For training, please remove the `eval=True` flag. To reproduce the reported results, ensure hyperparameters are correctly set (Tab. 8 & Tab. 9) as those in the paper (Appendix).
@@ -55,15 +56,15 @@ python main_cx2.py \
 
 ## Model Card
 
-| name | acc@1 | #params | FLOPs | log |
-|:--- |:---:|:---:|:---:| :---:|
-| glnet_4g            | 83.7 | 27 M   | 4.5 G  | [log](https://1drv.ms/t/s!AkBbczdRlZvCyE2s3jq9r-geapCU?e=JbENP6) |
-| glnet_9g            | 84.5 | 60 M   | 9.7 G  | [log](https://1drv.ms/t/s!AkBbczdRlZvCx2JesuOSJyvWm8x2?e=diGJxd) |
-| glnet_16g           | 85.0 | 106 M  | 16.7 G | [log](https://1drv.ms/t/s!AkBbczdRlZvCxxGJNnm2IAYQ6rNJ?e=XhTogD) |
-| glnet_4g_tklb       | 84.4 | 27 M   | 4.5 G | [log](https://1drv.ms/t/s!AkBbczdRlZvCx0uJW-LbILuibh0O?e=hdg4mW) |
-| glnet_9g_tklb       | 85.3 | 61 M   | 9.7 G | [log](https://1drv.ms/t/s!AkBbczdRlZvCyGD00zCBpqG3dNX-?e=C0bdyB) |
-| glnet_stl           | 82.5 | 30 M   | 4.4 G | [log](https://1drv.ms/t/s!AkBbczdRlZvCyA4sh1GAWZaw_87w?e=kCoJd2) |
-| glnet_stl_paramslot | 82.1 | 30 M   | 4.4 G | [log](https://1drv.ms/t/s!AkBbczdRlZvCyBqPhdcKNxNb43Bp?e=FbPJel) |
+| name | acc@1 | #params | FLOPs | log | checkpoint |
+|:--- |:---:|:---:|:---:| :---:| :---: |
+| glnet_4g            | 83.7 | 27 M   | 4.5 G  | [log](https://1drv.ms/t/s!AkBbczdRlZvCyE2s3jq9r-geapCU?e=JbENP6) |[ckpt](https://1drv.ms/u/s!AkBbczdRlZvCyG9DjS_AMqnJQiX1?e=tOkhHP)|
+| glnet_9g            | 84.5 | 60 M   | 9.7 G  | [log](https://1drv.ms/t/s!AkBbczdRlZvCx2JesuOSJyvWm8x2?e=diGJxd) |[ckpt](https://1drv.ms/u/s!AkBbczdRlZvCyEGFQ6kfWV-wVZei?e=wWwR8z)|
+| glnet_16g           | 85.0 | 106 M  | 16.7 G | [log](https://1drv.ms/t/s!AkBbczdRlZvCxxGJNnm2IAYQ6rNJ?e=XhTogD) |[ckpt](https://1drv.ms/u/s!AkBbczdRlZvCyjaBxC3h-B8CHWMm?e=GfR0kg)| 
+| glnet_4g_tklb       | 84.4 | 27 M   | 4.5 G | [log](https://1drv.ms/t/s!AkBbczdRlZvCx0uJW-LbILuibh0O?e=hdg4mW) |[ckpt](https://1drv.ms/u/s!AkBbczdRlZvCyAWcOdlTUa2J3vsX?e=wE4ch1)|
+| glnet_9g_tklb       | 85.3 | 61 M   | 9.7 G | [log](https://1drv.ms/t/s!AkBbczdRlZvCyGD00zCBpqG3dNX-?e=C0bdyB) |[ckpt](https://1drv.ms/u/s!AkBbczdRlZvCynPEcg-fC7ZDCMEt?e=bwufeR)|
+| glnet_stl           | 82.5 | 30 M   | 4.4 G | [log](https://1drv.ms/t/s!AkBbczdRlZvCyA4sh1GAWZaw_87w?e=kCoJd2) |[ckpt](https://1drv.ms/u/s!AkBbczdRlZvCyBFaAILEMu_dtbbV?e=9Ghhi3)|
+| glnet_stl_paramslot | 82.1 | 30 M   | 4.4 G | [log](https://1drv.ms/t/s!AkBbczdRlZvCyBqPhdcKNxNb43Bp?e=FbPJel) |[ckpt](https://1drv.ms/u/s!AkBbczdRlZvCyG0eat5zCE9upcQR?e=vmbmo1)|
 
 ## TODOs
 - [x] camera-ready paper link
